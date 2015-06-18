@@ -1,4 +1,4 @@
-// This file is a Backbone Model (don't worry about what that means)
+  // This file is a Backbone Model (don't worry about what that means)
 // It's part of the Board Visualizer
 // The only portions you need to work on are the helper functions (below)
 
@@ -147,8 +147,8 @@
       for(var i = 0; i < rows.length; i++) {
         if(rows[i][arg] === 1) {
           counter++
-          arg++;
         }
+        arg++;
       }
 
       return counter >= 2
@@ -158,17 +158,14 @@
     hasAnyMajorDiagonalConflicts: function() {
       var rows = this.rows();
       var len = rows.length;
-      for(var i = 0; i < len; i++) {
+      var k = len * -1;
+      for(var i = len - 1; i > k; i--) {
         if(this.hasMajorDiagonalConflictAt(i) === true) {
           return true;
         }
       }
-
-
       return false;
     },
-
-
 
     // Minor Diagonals - go from top-right to bottom-left
     // --------------------------------------------------------------
@@ -181,8 +178,8 @@
       for(var i = 0; i < rows.length; i++) {
         if(rows[i][arg] === 1) {
           counter++
-          arg--;
         }
+        arg--;
       }
       return counter >= 2;
     },
@@ -191,7 +188,8 @@
     hasAnyMinorDiagonalConflicts: function() {
       var rows = this.rows();
       var len = rows.length;
-      for(var i = 0; i < len; i++) {
+      var k = 2 * (len - 1);
+      for(var i = k; i >= 0; i--) {
         if(this.hasMinorDiagonalConflictAt(i) === true) {
           return true;
         }
