@@ -14,9 +14,10 @@
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
 window.findNRooksSolution = function(n) {
-  var board = new Board({n: n});
-  var solution;
-  var rows = board.rows();
+  var board = new Board({n: n}),
+       rows = board.rows(),
+       solution;
+
   for(var i = 0; i < n; i++) {
     for(var j = 0; j < n; j++) {
       board.togglePiece(i, j);
@@ -33,34 +34,31 @@ window.findNRooksSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = 0;
-  var board = new Board({n: n});
-  debugger;
+  var solutionCount = 0,
+              board = new Board({n: n});
+
   var recurse = function(row) {
-    if (row === n) {
-      return solutionCount++;
-    }
+    if (row === n) return solutionCount++
     for (var i = 0; i < n; i++) {
       board.togglePiece(row, i);
 
       if (!board.hasAnyRooksConflicts()) {
         recurse(row+1);
       }
-    board.togglePiece(row, i);
+      board.togglePiece(row, i);
     }
   }
+
   recurse(0);
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
 };
 
-
-
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-  var board = new Board({n: n});
-  var solution;
-  var rows = board.rows();
+  var board = new Board({n: n}),
+      rows = board.rows(),
+      solution;
 
   var recurse = function(row) {
     for (var j = 0; j < n; j++) {
@@ -94,12 +92,11 @@ window.findNQueensSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
-  var solutionCount = 0;
-  var board = new Board({n: n});
+  var solutionCount = 0,
+              board = new Board({n: n});
 
   var recurse = function(row) {
     if (row === n) return solutionCount++
-
     for (var i = 0; i < n; i++) {
       board.togglePiece(row, i);
 

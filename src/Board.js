@@ -86,11 +86,7 @@
           counter++;
         }
       }
-      if(counter >= 2) {
-        return true;
-      } else {
-        return false;
-      }
+      return counter >= 2;
     },
 
     // test if any rows on this board contain conflicts
